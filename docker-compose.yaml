@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  ortelius:
+    image: quay.io/ortelius/ortelius
+    container_name: orteliuscont
+    volumes:
+    - ./ortelius/data:/var/lib/pgsql/data
+    - ./ortelius/logs:/opt/ortelius/logs
+    ports: 
+    - "8080:8080"

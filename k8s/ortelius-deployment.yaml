@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f ../docker-compose.yaml
+    kompose.version: 1.21.0 ()
+  labels:
+    io.kompose.service: ortelius
+  name: ortelius
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: ortelius
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f ../docker-compose.yaml
+        kompose.version: 1.21.0 ()
+      labels:
+        io.kompose.service: ortelius
+    spec:
+      containers:
+      - image: quay.io/ortelius/ortelius
+        imagePullPolicy: ""
+        name: orteliuscont
+        ports:
+        - containerPort: 8080
+        resources: {}
+        volumeMounts:
+        - mountPath: /var/lib/pgsql/data
+          name: ortelius-claim0
+        - mountPath: /opt/ortelius/logs
+          name: ortelius-claim1
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - name: ortelius-claim0
+        persistentVolumeClaim:
+          claimName: ortelius-claim0
+      - name: ortelius-claim1
+        persistentVolumeClaim:
+          claimName: ortelius-claim1
