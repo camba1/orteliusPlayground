@@ -34,6 +34,7 @@ spec:
           name: ortelius-claim0
         - mountPath: /opt/ortelius/logs
           name: ortelius-claim1
+#      hostname: docker_dhpro
       restartPolicy: Always
       serviceAccountName: ""
       volumes:

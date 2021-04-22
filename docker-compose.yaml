@@ -2,10 +2,13 @@ version: "3.7"
 
 services:
   ortelius:
+#    image: quay.io/ortelius/ortelius:master-v9.0.0.369-g5418273
     image: quay.io/ortelius/ortelius
     container_name: orteliuscont
+    hostname: docker_dhpro
     volumes:
     - ./ortelius/data:/var/lib/pgsql/data
     - ./ortelius/logs:/opt/ortelius/logs
+    - ./ortelius/ssh:/keys
     ports: 
     - "8080:8080"
