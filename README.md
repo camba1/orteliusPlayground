@@ -11,6 +11,13 @@ Access Ortelius in your browser at `localhost:8080/dmadminweb/Home`
 
 To start it in K8s:
 
+- First time (includes creation of volumes for persistence)
+```bash
+    make startK8firsttime
+```
+
+- All other times, run: 
+
 ```bash
     make startK8s
 ```
